@@ -40,12 +40,12 @@
                 id="remember"
                 type="checkbox"
                 value
-                class="w-4 h-4 bg-gray-50 rounded border border-gray-300 focus:ring-3 focus:ring-blue-300 dark:bg-gray-700 dark:border-gray-600 dark:focus:ring-blue-600 dark:ring-offset-gray-800"
+                class="w-4 h-4 bg-gray-50 rounded border border-gray-300 focus:ring-3 focus:ring-green-300 dark:bg-gray-700 dark:border-gray-600 dark:focus:ring-green-600 dark:ring-offset-gray-800"
                 required
             />
         </div>
         <label for="remember" class="ml-2 text-sm font-medium text-gray-900 dark:text-gray-400"
-            >I agree with the <a href="#" class="text-blue-600 hover:underline dark:text-green-400"
+            >I agree with the <a href="/" class="text-green-600 hover:underline dark:text-green-400"
                 >terms and conditions</a
             >.</label
         >
@@ -54,7 +54,7 @@
         type="submit"
         value={loading ? 'Loading' : 'Send magic link'}
         disabled={loading}
-        class="text-white bg-green-600 hover:bg-green-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-green-600 dark:focus:ring-green-800"
+        class="text-white bg-green-600 hover:bg-green-800 focus:ring-4 focus:outline-none focus:ring-green-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-green-600 dark:hover:bg-green-600 dark:focus:ring-green-800"
         >Submit</button
     >
 </form>

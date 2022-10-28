@@ -36,7 +36,7 @@
 						<td class="py-4 px-6"> {e.date} </td>
 						<td class="py-4 px-6"> {e.start_time} </td>
 						<td class="py-4 px-6 text-right">
-							<a href="/{e.id}" class="font-medium text-blue-600 dark:text-green-400 hover:underline"
+							<a href="/{e.id}" class="font-medium text-green-600 dark:text-green-400 hover:underline"
 								>View</a
 							>
 						</td>

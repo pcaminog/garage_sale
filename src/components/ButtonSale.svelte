@@ -24,7 +24,7 @@
 		</div>
 		<button
 			on:click={() => loadZipSales(zipInput)}
-			class="inline-flex items-center py-2 px-3 text-sm font-medium text-center text-white bg-green-600 rounded-lg hover:bg-green-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-green-600 dark:focus:ring-green-800"
+			class="inline-flex items-center py-2 px-3 text-sm font-medium text-center text-white bg-green-600 rounded-lg hover:bg-green-800 focus:ring-4 focus:outline-none focus:ring-green-300 dark:bg-green-600 dark:hover:bg-green-600 dark:focus:ring-green-800"
 		>
 			Find them!
 			<svg
@@ -44,18 +44,16 @@
 	<div
 		class="p-6 m-2 max-w-sm bg-white rounded-lg border border-gray-200 shadow-md dark:bg-gray-800 dark:border-gray-700"
 	>
-		<a href="#">
 			<h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
 				Submit your Garage Sale
 			</h5>
-		</a>
 		<p class="mb-3 font-normal text-gray-700 dark:text-gray-400">
 			Here are the biggest enterprise technology acquisitions of 2021 so far, in reverse
 			chronological order.
 		</p>
 		<a
 			href="/submit"
-			class="inline-flex items-center py-2 px-3 text-sm font-medium text-center text-white bg-green-600 rounded-lg hover:bg-green-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-green-600 dark:focus:ring-green-800"
+			class="inline-flex items-center py-2 px-3 text-sm font-medium text-center text-white bg-green-600 rounded-lg hover:bg-green-800 focus:ring-4 focus:outline-none focus:ring-green-300 dark:bg-green-600 dark:hover:bg-green-600 dark:focus:ring-green-800"
 		>
 			Get Started
 			<svg
