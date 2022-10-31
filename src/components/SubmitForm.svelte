@@ -1,7 +1,7 @@
 <script lang="ts">
 	import { supabaseClient } from '$lib/supabaseClient';
 
-	let loading = false;
+	let loading: boolean = false;
 	let email: string;
 
 	const handleLogin = async () => {
@@ -16,11 +16,18 @@
 			}
 		} finally {
 			loading = false;
+			supabaseClient.auth.onAuthStateChange((event, session) => {
+				if (event == 'SIGNED_IN') {
+					console.log('SIGNED_IN', session);
+					getCoordinates();
+				}
+			});
 		}
 	};
 
-	let gSaleObj = {
-		house_number:'',
+	let gSaleObj: any = {
+		name: '',
+		house_number: '',
 		address: '',
 		city: '',
 		state: '',
@@ -31,12 +38,18 @@
 		end_time: ''
 	};
 
-
-	// https://api.mapbox.com/geocoding/v5/mapbox.places/1701%20Quynn%20Ln%20Leander%20TX.json?limit=1&country=US&types=address&access_token=pk.eyJ1IjoicGNhbWlub2ciLCJhIjoiY2w5cms4ZHlvMDJoYjNvbXlqdDQ5NGEwYSJ9.THroavC6uRqB1YY8ebB_JQ
-	function getCoordinates() {
-		fetch(
-			'https://api.mapbox.com/geocoding/v5/mapbox.places/${gSaleObj.house_number}%20${gSaleObj.address}%20${gSaleObj.street}%20${gSaleObj.city}%20${gSaleObj.state}%20${gSaleObj.zip}&access_token=pk.eyJ1IjoicGNhbWlub2ciLCJhIjoiY2w5cms4ZHlvMDJoYjNvbXlqdDQ5NGEwYSJ9.THroavC6uRqB1YY8ebB_JQ'
+	// https://api.mapbox.com/geocoding/v5/mapbox.places/1701+Quynn+Lane+Leander+TX.json?limit=1&country=US&types=address&access_token=pk.eyJ1IjoicGNhbWlub2ciLCJhIjoiY2w5cms4ZHlvMDJoYjNvbXlqdDQ5NGEwYSJ9.THroavC6uRqB1YY8ebB_JQ
+	async function getCoordinates() {
+		let a: string =
+			gSaleObj.house_number + '+' + gSaleObj.address + '+' + gSaleObj.city + '+' + gSaleObj.state;
+		let add = a.replace(/\s/g, '+');
+		console.log(add);
+		const response = await fetch(
+			`https://api.mapbox.com/geocoding/v5/mapbox.places/${add}.json?limit=1&country=US&types=address&access_token=pk.eyJ1IjoicGNhbWlub2ciLCJhIjoiY2w5cms4ZHlvMDJoYjNvbXlqdDQ5NGEwYSJ9.THroavC6uRqB1YY8ebB_JQ`
 		);
+		const data = await response.json();
+		console.log(data.features[0].geometry.coordinates);
+		gSaleObj.coordinates = data.features[0].geometry.coordinates;
 	}
 </script>
 
@@ -48,6 +61,7 @@
 					>Name</label
 				>
 				<input
+					bind:value={gSaleObj.name}
 					type="text"
 					id="name"
 					class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-green-400 focus:border-green-400 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-green-400 dark:focus:border-green-400"
@@ -132,12 +146,68 @@
 				<label for="state" class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300"
 					>State</label
 				>
-				<input
+				<select
+					class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-green-400 focus:border-green-400 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-green-400 dark:focus:border-green-400"
+					bind:value={gSaleObj.state}
+				>
+					<option value="AL">AL</option>
+					<option value="AK">AK</option>
+					<option value="AR">AR</option>
+					<option value="AZ">AZ</option>
+					<option value="CA">CA</option>
+					<option value="CO">CO</option>
+					<option value="CT">CT</option>
+					<option value="DC">DC</option>
+					<option value="DE">DE</option>
+					<option value="FL">FL</option>
+					<option value="GA">GA</option>
+					<option value="HI">HI</option>
+					<option value="IA">IA</option>
+					<option value="ID">ID</option>
+					<option value="IL">IL</option>
+					<option value="IN">IN</option>
+					<option value="KS">KS</option>
+					<option value="KY">KY</option>
+					<option value="LA">LA</option>
+					<option value="MA">MA</option>
+					<option value="MD">MD</option>
+					<option value="ME">ME</option>
+					<option value="MI">MI</option>
+					<option value="MN">MN</option>
+					<option value="MO">MO</option>
+					<option value="MS">MS</option>
+					<option value="MT">MT</option>
+					<option value="NC">NC</option>
+					<option value="NE">NE</option>
+					<option value="NH">NH</option>
+					<option value="NJ">NJ</option>
+					<option value="NM">NM</option>
+					<option value="NV">NV</option>
+					<option value="NY">NY</option>
+					<option value="ND">ND</option>
+					<option value="OH">OH</option>
+					<option value="OK">OK</option>
+					<option value="OR">OR</option>
+					<option value="PA">PA</option>
+					<option value="RI">RI</option>
+					<option value="SC">SC</option>
+					<option value="SD">SD</option>
+					<option value="TN">TN</option>
+					<option value="TX">TX</option>
+					<option value="UT">UT</option>
+					<option value="VT">VT</option>
+					<option value="VA">VA</option>
+					<option value="WA">WA</option>
+					<option value="WI">WI</option>
+					<option value="WV">WV</option>
+					<option value="WY">WY</option>
+				</select>
+				<!-- <input
 					bind:value={gSaleObj.state}
 					type="text"
 					class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-green-400 focus:border-green-400 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-green-400 dark:focus:border-green-400"
 					required
-				/>
+				/> -->
 			</div>
 			<div>
 				<label for="zip" class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300"
@@ -191,8 +261,9 @@
 			<label
 				for="terms and conditions"
 				class="ml-2 text-sm font-medium text-gray-900 dark:text-gray-400"
-				>I agree with the <a href="/terms" class="text-green-600 hover:underline dark:text-green-400"
-					>terms and conditions</a
+				>I agree with the <a
+					href="/terms"
+					class="text-green-600 hover:underline dark:text-green-400">terms and conditions</a
 				>.</label
 			>
 		</div>
@@ -205,6 +276,3 @@
 		>
 	</form>
 </div>
-
-
-
