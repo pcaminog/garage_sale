@@ -20,11 +20,10 @@ export async function loadZipSales(zip: number) {
 }
 
 export async function addGSales(gsale: any) {
-	const { data, error } = await supabaseClient.from('recipes').insert(gsale);
+	const { error } = await supabaseClient.from('sales').insert(gsale);
 
 	if (error) {
 		return console.error(error);
 	}
 
-	gsales.update((cur: any) => [...cur, data[0]]);
 }

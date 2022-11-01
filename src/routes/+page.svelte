@@ -7,7 +7,6 @@
 
 	loadGSales();
 
-	console.log($gsales);
 </script>
 
 <ButtonSale />
