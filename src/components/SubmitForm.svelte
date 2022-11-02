@@ -19,12 +19,14 @@
 			}
 		} finally {
 			loading = false;
-			 supabaseClient.auth.onAuthStateChange((event, session) => {
+			supabaseClient.auth.onAuthStateChange((event, session) => {
 				if (event == 'SIGNED_IN') {
 					console.log('SIGNED_IN', session);
 					submitSale()
 				}
-			});
+				console.log('no if match')
+			})
+;
 		}
 	};
 
@@ -44,7 +46,7 @@
 
 	async function submitSale() {
 		await buildCoordinates();
-		console.log(gSaleObj);
+		//console.log(gSaleObj);
 		addGSales(gSaleObj);
 		goto('/');
 	}

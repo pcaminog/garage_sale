@@ -1,8 +1,15 @@
-<script>
+<script lang='ts'>
 	/**
 	 * @type {any}
 	 */
-	export let data;
+	export let data: any;
+
+	import { page } from '$app/stores';
+
+
+	$: (console.log($page.params.slug))
+
+
 
 </script>
 
@@ -36,11 +43,7 @@
 
 						<td class="py-4 px-6"> {e.date} </td>
 						<td class="py-4 px-6"> {e.start_time} </td>
-						<td class="py-4 px-6 text-right">
-							<a href="/{e.id}" class="font-medium text-green-600 dark:text-green-400 hover:underline"
-								>View</a
-							>
-						</td>
+						<td class="py-4 px-6 text-right">{e.name}</td>
 					</tr>
 				{:else}
 					<tr class="bg-white dark:bg-gray-800 hover:bg-gray-50 dark:hover:bg-gray-600">

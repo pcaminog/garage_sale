@@ -7,7 +7,7 @@
 				alt="Flowbite Logo"
 			/>
 			<span class="self-center text-xl font-semibold whitespace-nowrap dark:text-white"
-				>Garege Sale</span
+				>Garage Sale</span
 			>
 		</a>
 		<button

@@ -19,8 +19,8 @@
 
 			const { data, error, status } = await supabaseClient
 				.from('profiles')
-				.select(`username, website, avatar_url`)
-				.eq('id', user.id)
+				.select(`username`)
+				.eq('email', session.user.email)
 				.single();
 
 			if (data) {
@@ -43,7 +43,7 @@
 			const { user } = session;
 
 			const updates = {
-				id: user.id,
+				email: session.user.email,
 				username,
 				updated_at: new Date()
 			};
