@@ -1,9 +1,9 @@
 <script>
-	import TableSingle from '../../components/TableSingle.svelte';
-	import { getSaleInfo, gOsales, loadOneGSales, sale_stats } from '../../stores/saleStore';
+	import TableSingle from '$lib/components/TableSingle.svelte';
+	import { getSaleInfo, gOsales, loadOneGSales, sale_stats } from '$lib/stores/saleStore';
 	import { page } from '$app/stores';
-	import SaleUserAction from '../../components/SaleUserAction.svelte';
-	import AuthStandalone from '../../components/AuthStandalone.svelte';
+	import SaleUserAction from '$lib/components/SaleUserAction.svelte';
+	import AuthStandalone from '$lib/components/AuthStandalone.svelte';
 
 	loadOneGSales($page.params.slug);
 	getSaleInfo($page.params.slug);

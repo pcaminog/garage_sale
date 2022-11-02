@@ -1,7 +1,7 @@
 <script lang="ts">
 	import { goto } from '$app/navigation';
 	import { supabaseClient } from '$lib/supabaseClient';
-	import { addGSales } from '../stores/saleStore';
+	import { addGSales } from '$lib/stores/saleStore';
 	import { page } from '$app/stores';
 
 	let loading: boolean = false;

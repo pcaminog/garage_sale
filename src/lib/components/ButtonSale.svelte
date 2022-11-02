@@ -1,5 +1,5 @@
 <script lang=ts>
-	import { loadZipSales } from '../stores/saleStore';
+	import { loadZipSales } from '$lib/stores/saleStore';
 	let zipInput: number;
 </script>
 
