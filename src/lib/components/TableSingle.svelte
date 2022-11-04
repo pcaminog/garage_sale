@@ -1,15 +1,8 @@
-<script lang='ts'>
+<script lang="ts">
 	/**
 	 * @type {any}
 	 */
 	export let data: any;
-
-	import { page } from '$app/stores';
-
-
-	$: (console.log($page.params.slug))
-
-
 
 </script>
 
@@ -25,9 +18,7 @@
 					<th scope="col" class="py-3 px-6"> City </th>
 					<th scope="col" class="py-3 px-6"> Date </th>
 					<th scope="col" class="py-3 px-6"> Time </th>
-					<th scope="col" class="py-3 px-6">
-						<span class="sr-only">View</span>
-					</th>
+					<th scope="col" class="py-3 px-6"> User </th>
 				</tr>
 			</thead>
 			<tbody>
@@ -43,7 +34,7 @@
 
 						<td class="py-4 px-6"> {e.date} </td>
 						<td class="py-4 px-6"> {e.start_time} </td>
-						<td class="py-4 px-6 text-right">{e.name}</td>
+						<td class="py-4 px-6">{e.name}</td>
 					</tr>
 				{:else}
 					<tr class="bg-white dark:bg-gray-800 hover:bg-gray-50 dark:hover:bg-gray-600">

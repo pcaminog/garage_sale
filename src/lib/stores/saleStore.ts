@@ -3,6 +3,7 @@ import { supabaseClient } from '$lib/supabaseClient.js';
 export const gsales = writable();
 export const gOsales = writable();
 export const sale_stats = writable();
+export const sales_coord = writable();
 
 export async function loadGSales() {
 	const { data, error } = await supabaseClient.from('sales').select();
@@ -18,6 +19,8 @@ export async function loadOneGSales(id: string) {
 		return console.error(error);
 	}
 	gOsales.set(data);
+
+	getSaleInfo(id)
 }
 
 export async function loadZipSales(zip: number) {
@@ -44,4 +47,14 @@ export async function getSaleInfo(gsale: any) {
 	}
 
 	sale_stats.set(data);
+}
+
+export async function getSaleCoord() {
+	const { data, error } = await supabaseClient.from('sales').select('coordinates');
+
+	if (error) {
+		return console.error(error);
+	}
+
+	sales_coord.set(data);
 }

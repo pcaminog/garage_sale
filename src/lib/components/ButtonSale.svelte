@@ -1,6 +1,7 @@
 <script lang=ts>
 	import { loadZipSales } from '$lib/stores/saleStore';
 	let zipInput: number;
+	
 </script>
 
 <div
