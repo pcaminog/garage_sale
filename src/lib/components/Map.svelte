@@ -1,42 +1,30 @@
-<script lang='ts'>
+<script lang="ts">
 	import { getSaleCoord, sales_coord } from '$lib/stores/saleStore';
-	import { json } from '@sveltejs/kit';
 	import mapboxgl from 'mapbox-gl';
 	import { onMount } from 'svelte';
 	mapboxgl.accessToken =
 		'pk.eyJ1IjoicGNhbWlub2ciLCJhIjoiY2w5cms4ZHlvMDJoYjNvbXlqdDQ5NGEwYSJ9.THroavC6uRqB1YY8ebB_JQ';
 
-    getSaleCoord()
-    console.log($sales_coord)
+	getSaleCoord();
 
-    let sdsa:any = $sales_coord
+	// import { writable } from 'svelte/store';
 
-		const geojson = {
-  features: [
-    {
-      type: 'Feature',
-      geometry: {
-        type: 'Point',
-        coordinates: [-97.7436663, 30.295566]
-      },
-      properties: {
-        title: 'Mapbox',
-        description: 'Washington, D.C.'
-      }
-    },
-    {
-      type: 'Feature',
-      geometry: {
-        type: 'Point',
-        coordinates: [-97.7336663, 30.265566]
-      },
-      properties: {
-        title: 'Mapbox',
-        description: 'San Francisco, California'
-      }
-    }
-  ]
-};
+	// let current_coort: any;
+
+	// export const geolocation: any = writable();
+
+	// if ('geolocation' in navigator) {
+	// 	geolocation.update(() => ({ supported: true }));
+	// 	navigator.geolocation.getCurrentPosition(({ coords }) => {
+	// 		current_coort = coords;
+	// 	});
+	// }
+
+	let sdsa: any = $sales_coord;
+
+	let reg = /(.*),(.*)/;
+	let arrayco: number[];
+
 	onMount(() => {
 		const map = new mapboxgl.Map({
 			container: 'map',
@@ -45,22 +33,31 @@
 			zoom: 11
 		});
 
-		for (const feature of geojson.features) {
-      console.log('this is the original ' + typeof(feature.geometry.coordinates))
-      console.log(typeof(sdsa[0].coordinates))
+		sdsa.forEach((single_coordinates: any) => {
+			let sigle = single_coordinates.coordinates;
+			let m = sigle.match(reg);
+			if (m != null) {
+				arrayco = [Number(m[1]), Number(m[2])];
+				console.log(arrayco);
 
-			const marker = new mapboxgl.Marker({
-				color: '#09bfb8'
-			})
-				.setLngLat(feature.geometry.coordinates)
-				.addTo(map)
-		}
+				const marker = new mapboxgl.Marker({
+					color: '#09bfb8'
+				})
+					.setLngLat(arrayco)
+					.addTo(map);
+			}
+		});
 	});
+
+	let position: any;
 </script>
 
 <svelte:head>
-	<script src='https://api.mapbox.com/mapbox-gl-js/v2.10.0/mapbox-gl.js'></script>
-	<link href='https://api.mapbox.com/mapbox-gl-js/v2.10.0/mapbox-gl.css' rel='stylesheet' />
+	<script src="https://api.mapbox.com/mapbox-gl-js/v2.10.0/mapbox-gl.js"></script>
+	<link href="https://api.mapbox.com/mapbox-gl-js/v2.10.0/mapbox-gl.css" rel="stylesheet" />
 </svelte:head>
 
-<div class="shadow-md rounded-lg py-8 px-4 mx-auto max-w-screen-xl h-96 lg:py-16 lg:px-6" id="map" />
+<div
+	class="shadow-md rounded-lg py-8 px-4 mx-auto max-w-screen-xl h-96 lg:py-16 lg:px-6"
+	id="map"
+/>

@@ -19,7 +19,7 @@
 			Let them know you will be there
 		</h2>
 	</div>
-	{#await $sale_stats then st}
+	<!-- {#await $sale_stats then st}
 		<SaleUserAction stats_sale={st} />
-	{/await}
+	{/await} -->
 {/if}

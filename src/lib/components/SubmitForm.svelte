@@ -18,7 +18,6 @@
 
 	async function submitSale() {
 		await buildCoordinates();
-		//console.log(gSaleObj);
 		addGSales(gSaleObj);
 		goto('/');
 	}
