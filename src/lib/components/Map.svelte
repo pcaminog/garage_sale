@@ -1,45 +1,60 @@
 <script lang="ts">
-	import { getSaleCoord, sales_coord } from '$lib/stores/saleStore';
+	import { getSaleCoord, sales_coord, user_zip } from '$lib/stores/saleStore';
 	import mapboxgl from 'mapbox-gl';
 	import { onMount } from 'svelte';
+	import { subscribe } from 'svelte/internal';
 	mapboxgl.accessToken =
 		'pk.eyJ1IjoicGNhbWlub2ciLCJhIjoiY2w5cms4ZHlvMDJoYjNvbXlqdDQ5NGEwYSJ9.THroavC6uRqB1YY8ebB_JQ';
 
 	getSaleCoord();
 
-	// import { writable } from 'svelte/store';
+	let reg = /(.*),(.*)/;
 
-	// let current_coort: any;
+	let z: string  = $user_zip
 
-	// export const geolocation: any = writable();
+	console.log(z)
 
-	// if ('geolocation' in navigator) {
-	// 	geolocation.update(() => ({ supported: true }));
-	// 	navigator.geolocation.getCurrentPosition(({ coords }) => {
-	// 		current_coort = coords;
-	// 	});
-	// }
+	async function getcoorszip() {
+		const response = await fetch(`https://zip-geolocation.buyed.workers.dev/`, {
+			headers: {
+				'x-zip': '78741'
+			}
+		});
+
+		let x = await response.text();
+		console.log(x);
+		let y = x.match(reg);
+		if (y != null) {
+			centerMap = [Number(y[1]), Number(y[2])];
+			zoomMap = 11;
+		}
+	}
 
 	let sdsa: any = $sales_coord;
 
-	let reg = /(.*),(.*)/;
 	let arrayco: number[];
+	let centerMap: number[];
+	let zoomMap: number;
+	if ($user_zip == '0') {
+		centerMap = [-93.3894092, 40.3922944];
+		zoomMap = 3;
+	} else {
+		getcoorszip();
+	}
 
 	onMount(() => {
 		const map = new mapboxgl.Map({
 			container: 'map',
 			style: 'mapbox://styles/mapbox/streets-v11',
-			center: [-97.73333, 30.266666],
-			zoom: 11
+			center: centerMap,
+			zoom: zoomMap
 		});
-
+		if (sdsa != undefined) {
 		sdsa.forEach((single_coordinates: any) => {
 			let sigle = single_coordinates.coordinates;
 			let m = sigle.match(reg);
 			if (m != null) {
 				arrayco = [Number(m[1]), Number(m[2])];
-				console.log(arrayco);
-
 				const marker = new mapboxgl.Marker({
 					color: '#09bfb8'
 				})
@@ -47,6 +62,7 @@
 					.addTo(map);
 			}
 		});
+		}
 	});
 
 	let position: any;

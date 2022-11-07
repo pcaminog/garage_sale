@@ -22,12 +22,14 @@
 
 <section class="bg-gray-50 dark:bg-gray-900">
 	<div class="flex flex-col items-center justify-center px-6 py-8 mx-auto md:h-screen lg:py-0">
-		<h2 class="text-4xl tracking-tight font-extrabold text-gray-900 dark:text-white mb-8">
-			Do you want to let the seller, you will be there
-		</h2>
-		<h2 class=" text-4xl tracking-tight font-extrabold text-gray-900 dark:text-white mb-8">
-			👇👇👇👇
-		</h2>
+		<a href="/" class="flex items-center mb-6 text-2xl font-semibold text-gray-900 dark:text-white">
+			<img
+				class="w-12 h-12 mr-1"
+				src="https://pub-e258ac947ad34755ae66487725c77d71.r2.dev/logo-web.svg"
+								alt="logo"
+			/>
+			Garage Sale Near Me
+		</a>
 		<div
 			class="w-full flex flex-col items-center bg-white rounded-lg shadow dark:border md:mt-0 sm:max-w-md xl:p-0 dark:bg-gray-800 dark:border-gray-700"
 		>
@@ -69,7 +71,7 @@
 							<label for="terms" class="font-light text-gray-500 dark:text-gray-300"
 								>I accept the <a
 									class="font-medium text-green-600 hover:underline dark:text-green-500"
-									href="#">Terms and Conditions</a
+									href="/">Terms and Conditions</a
 								></label
 							>
 						</div>

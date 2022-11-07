@@ -4,6 +4,7 @@ export const gsales = writable();
 export const gOsales = writable();
 export const sale_stats = writable();
 export const sales_coord = writable();
+export const user_zip = writable('0');
 
 export async function loadGSales() {
 	const { data, error } = await supabaseClient.from('sales').select();
@@ -23,13 +24,13 @@ export async function loadOneGSales(id: string) {
 	getSaleInfo(id)
 }
 
-export async function loadZipSales(zip: number) {
-	const { data, error } = await supabaseClient.from('sales').select().eq('zip', zip);
-	if (error) {
-		return console.error(error);
-	}
-	gsales.set(data);
-}
+// export async function loadZipSales(zip: number) {
+// 	const { data, error } = await supabaseClient.from('sales').select().eq('zip', zip);
+// 	if (error) {
+// 		return console.error(error);
+// 	}
+// 	gsales.set(data);
+// }
 
 export async function addGSales(gsale: any) {
 	const { error } = await supabaseClient.from('sales').insert(gsale);
