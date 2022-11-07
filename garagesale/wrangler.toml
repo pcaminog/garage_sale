@@ -1,0 +1,3 @@
+name = "garagesale"
+compatibility_date = "2022-11-07"
+kv_namespaces = [{ binding = "zipCodes", id = "56f45b16519545a39031db889e0c5bb8" }]

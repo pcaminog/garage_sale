@@ -2,7 +2,7 @@
 	<div class="container flex flex-wrap justify-between items-center mx-auto">
 		<a href="/" class="flex items-center">
 			<img
-				src="https://flowbite.com/docs/images/logo.svg"
+				src="https://pub-e258ac947ad34755ae66487725c77d71.r2.dev/logo-web.svg"
 				class="mr-3 h-6 sm:h-9"
 				alt="Flowbite Logo"
 			/>
@@ -49,7 +49,6 @@
 						>Account</a
 					>
 				</li>
-
 
 				<li>
 					<a
